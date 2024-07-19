@@ -1,0 +1,29 @@
+<div class="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-2">
+  <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
+    <div
+      class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
+      <h6
+        class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">
+        Entrada de Productos
+      </h6>
+    </div>
+    <form class="p-6" (ngSubmit)="entradaDeProductos()" #entryForm="ngForm">
+      <div class="mb-4">
+        <label for="productId" class="block text-xs font-medium text-blue-gray-600">ID del Producto</label>
+        <input type="text" id="productId" name="productId"
+          class="w-full mt-1 px-3 py-2 border border-blue-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          [(ngModel)]="entryProductId" required>
+      </div>
+      <div class="mb-4">
+        <label for="quantity" class="block text-xs font-medium text-blue-gray-600">Cantidad</label>
+        <input type="number" id="quantity" name="quantity"
+          class="w-full mt-1 px-3 py-2 border border-blue-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          [(ngModel)]="entryQuantity" required>
+      </div>
+      <button type="submit"
+        class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        Registrar Entrada
+      </button>
+    </form>
+  </div>
+</div>

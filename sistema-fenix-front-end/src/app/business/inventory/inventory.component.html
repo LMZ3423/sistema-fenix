@@ -1,0 +1,75 @@
+<div class="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-2">
+  <div
+    class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2">
+    <div
+      class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
+      <div>
+        <h6
+          class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1 capitalize">
+          Inventario</h6>
+      </div>
+    </div>
+    <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
+      <table class="w-full min-w-[640px] table-auto">
+        <thead>
+          <tr>
+            <th class="border-b border-blue-gray-50 py-3 px-2 text-left w-1/12">
+              <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID del
+                Producto</p>
+            </th>
+            <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+              <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Nombre del
+                producto</p>
+            </th>
+            <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+              <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Estatus del
+                producto</p>
+            </th>
+            <th class="border-b border-blue-gray-50 py-3 px-2 text-left w-1/12">
+              <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Cantidad en
+                existencia</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of paginatedProducts">
+            <td class="py-3 px-2 border-b border-blue-gray-50 w-1/12">
+              <div class="flex items-center gap-4">
+                <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{
+                  product.productId }}</p>
+              </div>
+            </td>
+            <td class="py-3 px-5 border-b border-blue-gray-50">
+              <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ product.productName }}
+              </p>
+            </td>
+            <td class="py-3 px-5 border-b border-blue-gray-50" *ngIf="roleID === 1">
+              <div class="flex items-center">
+                <input type="checkbox" class="toggle-checkbox" [checked]="product.status"
+                  (change)="onStatusChange(product)">
+                <span class="ml-2">{{ product.status ? 'Activo' : 'Inactivo' }}</span>
+              </div>
+            </td>
+            <td class="py-3 px-5 border-b border-blue-gray-50" *ngIf="roleID === 2">
+              <div class="flex items-center">
+                <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+                  {{ product.status ? 'ACTIVO' : 'INACTIVO' }}
+                </p>
+              </div>
+            </td>
+            <td class="py-3 px-2 border-b border-blue-gray-50 w-1/12">
+              <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ product.quantity }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1"
+      class="mx-1 px-2 py-1 border rounded">Anterior</button>
+    <span>Página {{ currentPage }} de {{ getTotalPages() }}</span>
+    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === getTotalPages()"
+      class="mx-1 px-2 py-1 border rounded">Siguiente</button>
+  </div>
+</div>

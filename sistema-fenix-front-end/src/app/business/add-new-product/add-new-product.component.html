@@ -1,0 +1,16 @@
+<div class="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-2">
+  <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
+    <div class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
+      <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">Agregar Nuevo Producto</h6>
+    </div>
+    <form class="p-6" (ngSubmit)="confirmAddProduct()" #productForm="ngForm">
+      <div class="mb-4">
+        <label for="productName" class="block text-xs font-medium text-blue-gray-600">Nombre del Producto</label>
+        <input type="text" id="productName" name="productName" class="w-full mt-1 px-3 py-2 border border-blue-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" [(ngModel)]="newProductName" required>
+      </div>
+      <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        Agregar Producto
+      </button>
+    </form>
+  </div>
+</div>

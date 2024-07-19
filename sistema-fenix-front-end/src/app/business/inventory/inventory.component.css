@@ -1,0 +1,20 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    justify-content: flex-end; /* Align items to the bottom */
+  }
+  
+  .flex-grow {
+    flex-grow: 1; /* Take up remaining space */
+  }
+  
+  .flex-shrink-0 {
+    flex-shrink: 0; /* Do not shrink */
+  }
+
+  .hidden {
+    display: none;
+  }
+  
+  

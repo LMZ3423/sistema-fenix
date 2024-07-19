@@ -1,0 +1,89 @@
+<div class="flex">
+  <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden w-1/2">
+    <div
+      class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
+      <h6
+        class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">
+        Salida de Productos</h6>
+    </div>
+    <form class="p-6" (ngSubmit)="openConfirmDialog()" #exitForm="ngForm">
+      <div class="mb-4">
+        <label for="exitProductId" class="block text-xs font-medium text-blue-gray-600">ID del Producto</label>
+        <input type="number" id="exitProductId" name="exitProductId"
+          class="w-full mt-1 px-3 py-2 border border-blue-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          [(ngModel)]="exitProductId" (ngModelChange)="filterProductsById($event)" required min="1" step="1">
+      </div>
+      <div class="mb-4">
+        <label for="exitQuantity" class="block text-xs font-medium text-blue-gray-600">Cantidad</label>
+        <input type="number" id="exitQuantity" name="exitQuantity"
+          class="w-full mt-1 px-3 py-2 border border-blue-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          [(ngModel)]="exitQuantity" required min="1" step="1">
+      </div>
+      <button type="submit"
+        class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        Registrar Salida
+      </button>
+    </form>
+  </div>
+</div>
+<div
+  class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2">
+  <div
+    class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
+    <div>
+      <h6
+        class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1 capitalize">
+        Productos activos</h6>
+    </div>
+  </div>
+  <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
+    <table class="w-full min-w-[640px] table-auto">
+      <thead>
+        <tr>
+          <th class="border-b border-blue-gray-50 py-3 px-2 text-center w-1/12">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID del Producto
+            </p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-2 text-center">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Nombre del
+              producto</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-2 text-center">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Estatus del
+              producto</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-2 text-center w-1/12">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Cantidad en
+              existencia</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of paginatedProducts">
+          <td class="py-3 px-2 border-b border-blue-gray-50 text-center w-1/12">
+            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{
+              product.productId }}</p>
+          </td>
+          <td class="py-3 px-2 border-b border-blue-gray-50 text-center">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ product.productName }}</p>
+          </td>
+          <td class="py-3 px-2 border-b border-blue-gray-50 text-center">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+              {{ product.status ? 'ACTIVO' : 'INACTIVO' }}
+            </p>
+          </td>
+          <td class="py-3 px-2 border-b border-blue-gray-50 text-center w-1/12">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ product.quantity }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-center mt-4">
+    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1"
+      class="mx-1 px-2 py-1 border rounded">Anterior</button>
+    <span>Página {{ currentPage }} de {{ getTotalPages() }}</span>
+    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === getTotalPages()"
+      class="mx-1 px-2 py-1 border rounded">Siguiente</button>
+  </div>
+</div>

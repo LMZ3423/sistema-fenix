@@ -1,0 +1,64 @@
+<div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
+  <div class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
+    <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">Historial de Movimientos</h6>
+    <div>
+      <button (click)="filterMovements('Entrada')" class="px-4 py-2 mx-1 text-white bg-green-500 rounded">Entrada</button>
+      <button (click)="filterMovements('Salida')" class="px-4 py-2 mx-1 text-white bg-red-500 rounded">Salida</button>
+      <button (click)="clearFilter()" class="px-4 py-2 mx-1 text-white bg-gray-500 rounded">Mostrar Todo</button>
+    </div>
+  </div>
+  <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
+    <table class="w-full min-w-[640px] table-auto">
+      <thead>
+        <tr>
+          <th class="border-b border-blue-gray-50 py-3 px-2 text-left w-1/12">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID Movimiento</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID Producto</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID Usuario</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Tipo de Movimiento</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Cantidad</p>
+          </th>
+          <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+            <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Fecha de Movimiento</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movement of paginatedMovements">
+          <td class="py-3 px-2 border-b border-blue-gray-50 w-1/12">
+            <div class="flex items-center gap-4">
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ movement.movementID }}</p>
+            </div>
+          </td>
+          <td class="py-3 px-5 border-b border-blue-gray-50">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ movement.productID }}</p>
+          </td>
+          <td class="py-3 px-5 border-b border-blue-gray-50">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ movement.userID }}</p>
+          </td>
+          <td class="py-3 px-5 border-b border-blue-gray-50">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ movement.movementType }}</p>
+          </td>
+          <td class="py-3 px-5 border-b border-blue-gray-50">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ movement.quantity }}</p>
+          </td>
+          <td class="py-3 px-5 border-b border-blue-gray-50">
+            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ movement.movementDate }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex justify-end mt-4">
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="px-4 py-2 mx-1 text-white bg-blue-500 rounded">Anterior</button>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="px-4 py-2 mx-1 text-white bg-blue-500 rounded">Siguiente</button>
+    </div>
+  </div>
+</div>
