@@ -42,7 +42,7 @@ FENIX es un sistema de gestión de inventarios que consta de un frontend desarro
      spring.datasource.url=jdbc:sqlserver://<HOST>:<PUERTO>;databaseName=<NOMBRE_BASE_DE_DATOS>
      spring.datasource.username=<USUARIO>
      spring.datasource.password=<CONTRASEÑA>
-     spring.datasource.url=jdbc:sqlserver://<OTRO_HOST>:<OTRO_PUERTO>;databaseName=<OTRO_NOMBRE_BASE_DE_DATOS>;encrypt=true;trustServerCertificate=true;
+     spring.datasource.url=jdbc:sqlserver://<NOMBRE_DEL_SERVIDOR>:<PUERTO>;databaseName=<NOMBRE_BASE_DE_DATOS>;encrypt=true;trustServerCertificate=true;
      ```
 
 3. **Importar el Proyecto en Eclipse**:
